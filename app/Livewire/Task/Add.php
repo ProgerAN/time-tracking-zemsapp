@@ -12,6 +12,7 @@ use Livewire\Component;
 class Add extends Component
 {
     public $confirmingAddTask = false;
+    public $project_id = '';
 
     #[Validate('required')]
     public $description = '';
@@ -35,8 +36,8 @@ class Add extends Component
         $this->validate();
 
         $task::query()->create([
-            'description' => $this->name,
-            'user_id' => Auth::user()->id,
+            'description' => $this->description,
+            'project_id' => $this->project_id,
         ]);
 
         $this->confirmingAddTask = false;

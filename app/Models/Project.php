@@ -24,6 +24,11 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function timeEntries()
+    {
+        return $this->hasManyThrough(TimeEntry::class, Task::class);
+    }
+
     public function scopeSearch($query, $value)
     {
         $query->where('name', 'like', "%{$value}%");

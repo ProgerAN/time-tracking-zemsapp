@@ -13,21 +13,25 @@
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
 
                     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-10 lg:px-6">
-                    <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
-                        <div class="flex flex-col items-center justify-center">
-                            <dt class="mb-2 text-3xl md:text-4xl font-extrabold">{{ $project->tasks()->count() }} pcs</dt>
-                            <dd class="font-light text-gray-500 dark:text-gray-400">Total tasks</dd>
-                        </div>
-                        <div class="flex flex-col items-center justify-center">
-                            <dt class="mb-2 text-3xl md:text-4xl font-extrabold">{{ $project->tasks()->where('status', 'completed')->count()  }} pcs</dt>
-                            <dd class="font-light text-gray-500 dark:text-gray-400">Tasks completed</dd>
-                        </div>
-                        <div class="flex flex-col items-center justify-center">
-                            <dt class="mb-2 text-3xl md:text-4xl font-extrabold">5 hr</dt>
-                            <dd class="font-light text-gray-500 dark:text-gray-400">Time spent at work</dd>
-                        </div>
-                    </dl>
-                </div>
+                        <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
+                            <div class="flex flex-col items-center justify-center">
+                                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">{{ $project->tasks()->count() }}
+                                    pcs
+                                </dt>
+                                <dd class="font-light text-gray-500 dark:text-gray-400">Total tasks</dd>
+                            </div>
+                            <div class="flex flex-col items-center justify-center">
+                                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">{{ $project->tasks()->where('status', 'completed')->count()  }}
+                                    pcs
+                                </dt>
+                                <dd class="font-light text-gray-500 dark:text-gray-400">Tasks completed</dd>
+                            </div>
+                            <div class="flex flex-col items-center justify-center">
+                                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">{{ $totalHours }} hr</dt>
+                                <dd class="font-light text-gray-500 dark:text-gray-400">Time spent at work</dd>
+                            </div>
+                        </dl>
+                    </div>
 
                 </div>
 
@@ -50,7 +54,7 @@
                                     ones.</p>
                             </div>
 
-                            @livewire('task.add')
+                            @livewire('task.add', ['project_id' => $project->id])
                         </div>
 
                         @livewire('task.table', ['project_id' => $project->id])

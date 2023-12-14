@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'status'];
+    protected $fillable = ['description', 'status', 'project_id'];
 
     public $enumStatus = ['open', 'in_progress', 'completed'];
 

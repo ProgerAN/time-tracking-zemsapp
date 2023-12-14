@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TimeEntry>
@@ -19,6 +20,7 @@ class TimeEntryFactory extends Factory
     {
         return [
             'task_id' => Task::inRandomOrder()->first(),
+            'start_at' => Carbon::now(),
         ];
     }
 }

@@ -8,7 +8,7 @@
     </div>
 
 
-    <x-dialog-modal wire:model.live="confirmingAddProject">
+    <x-dialog-modal wire:model.live="confirmingAddTask">
         <x-slot name="title">
             {{ __('Add a new task') }}
         </x-slot>
@@ -19,22 +19,22 @@
             <div class="mt-4" x-data="{}" x-on:confirming-add-project.window="setTimeout(() => $refs.name.focus(), 250)">
                 <x-input type="text" class="mt-1 block w-3/4"
                          autocomplete="current-name"
-                         placeholder="{{ __('Project name') }}"
-                         x-ref="name"
-                         wire:model="name"
-                         wire:keydown.enter="addProject" />
+                         placeholder="{{ __('Description task') }}"
+                         x-ref="description"
+                         wire:model="description"
+                         wire:keydown.enter="addTask" />
 
-                <x-input-error for="name" class="mt-2" />
+                <x-input-error for="description" class="mt-2" />
             </div>
         </x-slot>
 
         <x-slot name="footer">
 
-            <x-secondary-button wire:click="$toggle('confirmingAddProject')" wire:loading.attr="disabled">
+            <x-secondary-button wire:click="$toggle('confirmingAddTask')" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-button class="ms-3" wire:click="addProject" wire:loading.attr="disabled">
+            <x-button class="ms-3" wire:click="addTask" wire:loading.attr="disabled">
                 {{ __('Add task') }}
             </x-button>
         </x-slot>

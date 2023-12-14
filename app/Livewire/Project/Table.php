@@ -26,7 +26,7 @@ class Table extends Component
 
     public function deleteProject()
     {
-        Project::query()->find($this->deleteId)->delete();
+        Project::query()->findOrFail($this->deleteId)->delete();
         $this->confirmingDelete = false;
     }
 

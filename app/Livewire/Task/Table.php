@@ -4,6 +4,7 @@ namespace App\Livewire\Task;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\TimeEntry;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,6 +13,7 @@ class Table extends Component
 {
     use WithPagination;
 
+    public $timeEntry;
     public $project_id;
 
     public $confirmingDelete = false;
@@ -27,12 +29,35 @@ class Table extends Component
 
     public function deleteProject()
     {
-        Task::query()->find($this->deleteId)->delete();
+        Task::query()->findOrFail($this->deleteId)->delete();
         $this->confirmingDelete = false;
     }
 
+    public function taskStart($id)
+    {
 
-    #[On('projects-table-update')]
+        TimeEntry::query()->create([
+            'task_id' => $id,
+            'start_at' => now()->format('Y-m-d H:i:s'),
+        ]);
+
+        Task::query()->findOrFail($id)->update([
+            'status' => 'in_progress'
+        ]);
+    }
+
+    public function taskEnd($id)
+    {
+        TimeEntry::query()->where('task_id', $id)->update([
+            'end_at' => now()->format('Y-m-d H:i:s'),
+        ]);
+
+        Task::query()->findOrFail($id)->update([
+            'status' => 'completed'
+        ]);
+    }
+
+    #[On('task-table-update')]
     public function render()
     {
         return view('task.livewire.table', [
