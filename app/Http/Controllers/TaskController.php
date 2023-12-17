@@ -12,11 +12,4 @@ class TaskController extends Controller
     {
         return view('task.index');
     }
-
-    public function show(Task $task)
-    {
-        return view('task.show', [
-            'task' => $task,
-        ]);
-    }
 }

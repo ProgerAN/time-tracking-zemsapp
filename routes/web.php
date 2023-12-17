@@ -24,5 +24,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/projects/{project}', [\App\Http\Controllers\ProjectController::class, 'show'])->name('project-show');
 
     Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks');
-    Route::get('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])->name('task-show');
 });

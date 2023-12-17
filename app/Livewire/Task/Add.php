@@ -43,7 +43,9 @@ class Add extends Component
         ]);
 
         $this->confirmingAddTask = false;
+
         $this->dispatch('task-table-update');
+        $this->dispatch('project-statistic-update');
     }
 
 

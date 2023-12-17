@@ -32,6 +32,8 @@ class Table extends Component
     {
         Task::query()->findOrFail($this->deleteId)->delete();
         $this->confirmingDelete = false;
+
+        $this->dispatch('project-statistic-update');
     }
 
     public function taskStart($id)
@@ -45,6 +47,8 @@ class Table extends Component
         Task::query()->findOrFail($id)->update([
             'status' => 'in_progress'
         ]);
+
+        $this->dispatch('project-statistic-update');
     }
 
     public function taskEnd($id)
@@ -56,6 +60,8 @@ class Table extends Component
         Task::query()->findOrFail($id)->update([
             'status' => 'completed'
         ]);
+
+        $this->dispatch('project-statistic-update');
     }
 
     #[On('task-table-update')]
