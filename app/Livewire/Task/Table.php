@@ -15,6 +15,7 @@ class Table extends Component
 
     public $timeEntry;
     public $project_id;
+    public $showAll = false;
 
     public $confirmingDelete = false;
 
@@ -60,8 +61,15 @@ class Table extends Component
     #[On('task-table-update')]
     public function render()
     {
+
+        if ($this->showAll){
+            $tasks = Task::query()->search($this->search)->orderBy('created_at', 'desc')->paginate(10);
+        } else {
+            $tasks = Task::query()->where('project_id', $this->project_id)->search($this->search)->orderBy('created_at', 'desc')->paginate(10);
+        }
+
         return view('task.livewire.table', [
-            'tasks' => Task::query()->where('project_id', $this->project_id)->search($this->search)->orderBy('created_at', 'desc')->paginate(10)
+            'tasks' => $tasks
         ]);
     }
 }

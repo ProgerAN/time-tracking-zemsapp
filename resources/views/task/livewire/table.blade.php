@@ -27,12 +27,12 @@
 
     <div class="grid grid-flow-row-dense gap-8 mb-6 lg:mb-16 md:grid-cols-2 " wire:loading.remove>
         @forelse($tasks as $task)
-            <div
-                class="py-6 w-full relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="py-6 w-full relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
                 <div class="flex flex-col items-center pb-10">
                     <div class="flex">
 
-                        @switch($task->status)
+                    @switch($task->status)
                             @case('open')
                                 <x-secondary-button class="mr-2" wire:click="taskStart({{$task->id}})">
                                     {{ __('Start execution') }}
@@ -80,8 +80,11 @@
                             @break
                     @endswitch
 
-                    <h2 class=" text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Task
-                        Description</h2>
+                    <h2 class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><small>project> </small>{{ $task->project->name }}</h2>
+                    <h3 class="row mt-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">task description</h3>
+                    <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                    </svg>
                     <span class="text-center mt-1 p-4 text-sm text-gray-500 dark:text-gray-400">
                         {{ $task->description }}
                     </span>

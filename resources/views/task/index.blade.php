@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Projects') }}
+            {{ __('Tasks') }}
         </h2>
     </x-slot>
 
@@ -15,15 +15,15 @@
                         <div
                             class="flex-row items-center justify-between p-4 space-y-3 sm:flex sm:space-y-0 sm:space-x-4">
                             <div>
-                                <h5 class="mr-3 font-semibold dark:text-white">Projects list</h5>
-                                <p class="text-gray-500 dark:text-gray-400">Manage existing projects or create new
+                                <h5 class="mr-3 font-semibold dark:text-white">Tasks list</h5>
+                                <p class="text-gray-500 dark:text-gray-400">Manage existing tasks or create new
                                     ones.</p>
                             </div>
 
-                            @livewire('project.add')
+                            @livewire('task.add', ['showAll' => true])
                         </div>
 
-                        @livewire('project.table')
+                        @livewire('task.table', ['showAll' => true])
                     </div>
 
                 </div>

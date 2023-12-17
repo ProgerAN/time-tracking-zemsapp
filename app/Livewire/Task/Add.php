@@ -12,6 +12,8 @@ use Livewire\Component;
 class Add extends Component
 {
     public $confirmingAddTask = false;
+    public $showAll = false;
+    #[Validate('required|exists:projects,id')]
     public $project_id = '';
 
     #[Validate('required')]
@@ -47,6 +49,8 @@ class Add extends Component
 
     public function render()
     {
-        return view('task.livewire.add');
+        return view('task.livewire.add', [
+            'projects' => Project::all()
+        ]);
     }
 }
