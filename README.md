@@ -15,7 +15,7 @@
 
 ```bash
 # Клонировать репозиторий:
-git clone https://github.com/ваш-пользователь/ваш-репозиторий.git
+git clone https://github.com/ProgerAN/time-tracking-zemsapp.git
 
 # Установить зависимости PHP:
 composer install
