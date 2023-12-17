@@ -16,7 +16,25 @@ class Table extends Component
     public $confirmingDelete = false;
 
     public $search = '';
+
+    public $editedId = '';
+    public $name = '';
     public $deleteId = '';
+
+    public function editName($id)
+    {
+        $this->name = Project::query()->findOrFail($id)->name;
+        $this->editedId = $id;
+    }
+    public function saveName($id)
+    {
+
+        Project::query()->findOrFail($id)->update([
+            'name' => $this->name,
+        ]);
+
+        $this->editedId = null;
+    }
 
     public function confirmDelete($id)
     {
